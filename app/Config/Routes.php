@@ -31,9 +31,10 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::index', ['as' => 'login']);
 $routes->get('/signup', 'Auth::signupIndex', ['as' => 'viewSignUp']);
-$routes->post('/signup', 'Auth::signupStore', ['as' => 'signUp']);
 $routes->get('/home', 'Home::index');
-
+$routes->get('/recoverPassword', 'Auth::recoverPasswordIndex', ['as' => 'viewRecoverPassword']);
+$routes->post('/signup', 'Auth::signupStore', ['as' => 'signUp', 'filter' => 'csrf']);
+$routes->post('/recoverPassword', 'Auth::recoverPasswordStore', ['as' => 'recoverPassword', 'filter' => 'csrf']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing
@@ -47,6 +48,6 @@ $routes->get('/home', 'Home::index');
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+if (is_file(APPPATH.'Config/'.ENVIRONMENT.'/Routes.php')) {
+    require APPPATH.'Config/'.ENVIRONMENT.'/Routes.php';
 }
