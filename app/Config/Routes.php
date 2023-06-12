@@ -30,11 +30,19 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::index', ['as' => 'login']);
+$routes->post('/', 'Auth::store', ['as' => 'loginStore']);
+$routes->get('/logout', 'Auth::destroy', ['as' => 'loginDestroy']);
 $routes->get('/signup', 'Auth::signupIndex', ['as' => 'viewSignUp']);
-$routes->get('/home', 'Home::index');
 $routes->get('/recoverPassword', 'Auth::recoverPasswordIndex', ['as' => 'viewRecoverPassword']);
+$routes->get('/reset/(:alphanum)', 'Auth::resetPasswordIndex/$1', ['as' => 'viewResetPassword']);
+$routes->post('/reset/(:alphanum)', 'Auth::resetPasswordStore/$1', ['as' => 'resetPassword', 'filter' => 'csrf']);
 $routes->post('/signup', 'Auth::signupStore', ['as' => 'signUp', 'filter' => 'csrf']);
 $routes->post('/recoverPassword', 'Auth::recoverPasswordStore', ['as' => 'recoverPassword', 'filter' => 'csrf']);
+
+$routes->group('admin', ['filter' => 'auth'], static function ($routes) {
+    $routes->get('/', 'Home::index', ['as' => 'home']);
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
