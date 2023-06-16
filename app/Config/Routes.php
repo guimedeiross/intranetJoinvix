@@ -11,7 +11,7 @@ $routes = Services::routes();
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Auth');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -40,7 +40,7 @@ $routes->post('/signup', 'Auth::signupStore', ['as' => 'signUp', 'filter' => 'cs
 $routes->post('/recoverPassword', 'Auth::recoverPasswordStore', ['as' => 'recoverPassword', 'filter' => 'csrf']);
 
 $routes->group('admin', ['filter' => 'auth'], static function ($routes) {
-    $routes->get('/', 'Home::index', ['as' => 'home']);
+    $routes->get('/', 'Modulos\VisualizaDatas::index', ['as' => 'home']);
 });
 
 /*

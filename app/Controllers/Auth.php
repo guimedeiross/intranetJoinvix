@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Libraries\Mail;
+use CodeIgniter\Database\RawSql;
 use Config\Database;
 
 class Auth extends BaseController
@@ -241,8 +242,11 @@ class Auth extends BaseController
 
             return redirect()->route('viewRecoverPassword');
         }
-
-        $update = $builder->set('password', password_hash($data, PASSWORD_DEFAULT))->where('id', $tokenFound->id)->update();
+        $fieldsToUpdate = [
+            'password' => password_hash($data, PASSWORD_DEFAULT),
+            'updated_at' => new RawSql('CURRENT_TIMESTAMP'),
+        ];
+        $update = $builder->set($fieldsToUpdate)->where('id', $tokenFound->id)->update();
 
         if (!$update) {
             return redirect()->route('login')->with('problem_update_password', 'Woops, problema ao atualizar senha, tente novamente em alguns minutos.');
