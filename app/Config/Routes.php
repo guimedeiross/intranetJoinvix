@@ -40,7 +40,7 @@ $routes->post('/signup', 'Auth::signupStore', ['as' => 'signUp', 'filter' => 'cs
 $routes->post('/recoverPassword', 'Auth::recoverPasswordStore', ['as' => 'recoverPassword', 'filter' => 'csrf']);
 
 $routes->group('admin', ['filter' => 'auth'], static function ($routes) {
-    $routes->get('/', 'Modulos\VisualizaDatas::index', ['as' => 'home']);
+    $routes->get('/', 'Modulos\FaturasDuplicadas::index', ['as' => 'home']);
 });
 
 /*

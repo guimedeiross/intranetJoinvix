@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Libraries\Pagination;
 use Config\Database;
 
-class VisualizaDatas extends BaseController
+class FaturasDuplicadas extends BaseController
 {
     public function index()
     {
@@ -59,6 +59,6 @@ class VisualizaDatas extends BaseController
 
         $filteredInvoiceProperties = array_slice($filteredInvoiceProperties, $pagination->dump()['offset'], $pagination->dump()['itemsPerPage']);
 
-        return view('home', ['bodyClean' => true, 'moduleName' => 'Visualizar Datas', 'invoices' => $filteredInvoiceProperties, 'pagination' => $pagination]);
+        return view('home', ['bodyClean' => true, 'moduleName' => 'Faturas Duplicadas', 'invoices' => $filteredInvoiceProperties, 'pagination' => $pagination]);
     }
 }
