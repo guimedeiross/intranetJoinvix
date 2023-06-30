@@ -3,7 +3,7 @@
 <?php echo $this->section('content'); ?>
 
 <link href="<?php echo base_url(); ?>assets/css/login.css" rel="stylesheet">
-    
+
 <main class="form-signin w-100 m-auto">
   <form method="post" action="<?php url_to('loginStore'); ?>">
     <?php echo csrf_field(); ?>
@@ -23,7 +23,6 @@
       <span class="text text-danger"><?php echo session()->getFlashdata('errorsLogin')['password'] ?? ''; ?></span>
     </div>
     <button class="mt-2 btn btn-primary w-100 py-2" type="submit" name="btnLogin" id="btnLogin">Login</button>
-    <button class="mt-2 btn btn-success w-100 py-2" name="btnSignUp" id="btnSignUp">Cadastre-se</button>
     <a href="<?php echo url_to('viewRecoverPassword'); ?>" class="text-start my-3" id="recoverPassword">Esqueceu a senha?</a>
   </form>
 </main>

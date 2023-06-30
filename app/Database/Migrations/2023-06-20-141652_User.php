@@ -33,16 +33,21 @@ class User extends Migration
                 'type' => 'DATETIME',
                 'null' => true,
             ],
+            'department_id' => [
+                'type' => 'INT',
+                'unsigned' => true,
+            ],
             'created_at' => [
                 'type' => 'TIMESTAMP',
                 'default' => new RawSql('CURRENT_TIMESTAMP'),
             ],
             'updated_at' => [
                 'type' => 'TIMESTAMP',
-                'default' => new RawSql('CURRENT_TIMESTAMP'),
+                'default' => new RawSql('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('department_id', 'departments', 'id', '', 'CASCADE');
         $this->forge->createTable('users');
     }
 

@@ -24,9 +24,9 @@ class Auth implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (!session()->has('user')) {
-            return redirect()->route('login');
-        }
+        //if (!session()->has('user')) {
+        //    return redirect()->route('login');
+        //}
     }
 
     /**

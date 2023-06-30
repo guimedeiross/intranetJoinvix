@@ -59,6 +59,6 @@ class FaturasDuplicadas extends BaseController
 
         $filteredInvoiceProperties = array_slice($filteredInvoiceProperties, $pagination->dump()['offset'], $pagination->dump()['itemsPerPage']);
 
-        return view('home', ['bodyClean' => true, 'moduleName' => 'Faturas Duplicadas', 'invoices' => $filteredInvoiceProperties, 'pagination' => $pagination]);
+        return view('home', ['bodyClean' => true, 'moduleName' => 'Faturas Duplicadas', 'invoices' => $filteredInvoiceProperties, 'pagination' => $pagination, 'routeToNameTitle' => 'home']);
     }
 }
